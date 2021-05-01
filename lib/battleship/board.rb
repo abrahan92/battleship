@@ -54,7 +54,9 @@ module Battleship
     def valid_coord?(cell, ship)
       if cell && cell.empty?
         find_cells = build_ship_with_index_cell(ship.size, cell)
-        if find_cells.select(&:empty?).count == find_cells.count
+        if find_cells&.all? do |look_cell|
+             !look_cell.nil?
+           end && find_cells.select(&:empty?).count == find_cells.count
           set_ship_cells(ship, find_cells)
           true
         else
