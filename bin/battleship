@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "battleship"
+trap("INT") { exit }
+
+print "Would you like to play best of 3 mode?: [y/n]: ".blue
+best_of3 = $stdin.gets.chomp
+play_best_of3 = best_of3 == "y"
+
+Battleship::Game.new(5, true, play_best_of3).play
